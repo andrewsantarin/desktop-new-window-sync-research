@@ -7,6 +7,7 @@ import { updateValue } from './Value.state';
 import { valueBroadcastChannel as channel, ValueMessage } from './Value.sync';
 import { Detachable } from './Detachable';
 import { ValueFetchContainer } from './ValueFetch';
+import { ThisMenuMustWork } from './ThisMenuMustWork';
 
 export const URL_PATH = '/value';
 
@@ -114,6 +115,7 @@ export class Value extends Component<ValueProps, ValueState> {
           <button onClick={this.handleReduxIncrementValueClick}>+</button>
           <button onClick={this.handleReduxDecrementValueClick}>-</button>
         </div>
+        <ThisMenuMustWork />
         <ValueFetchContainer />
       </div>
     )
