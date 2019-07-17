@@ -1,5 +1,5 @@
 {
-  "name": "rc-dock-research",
+  "name": "desktop-new-window-sync-research",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -7,10 +7,31 @@
     "@types/node": "12.6.3",
     "@types/react": "16.8.23",
     "@types/react-dom": "16.8.4",
+    "@types/react-redux": "^7.1.1",
+    "@types/react-router-dom": "^4.3.4",
+    "@types/redux-state-sync": "^2.0.0",
+    "@types/uuid": "^3.4.5",
+    "broadcast-channel": "^2.1.12",
+    "rc-dock": "^2.3.7",
     "react": "^16.8.6",
+    "react-app-polyfill": "^1.0.1",
+    "react-auto-controlled": "^0.1.0-beta.14",
     "react-dom": "^16.8.6",
+    "react-new-window": "^0.1.2",
+    "react-popout-component": "^1.8.5",
+    "react-redux": "^7.1.0",
+    "react-router": "^5.0.1",
+    "react-router-config": "^5.0.1",
+    "react-router-config-recursive-prefixer": "^0.1.0-beta.3",
+    "react-router-dom": "^5.0.1",
     "react-scripts": "3.0.1",
-    "typescript": "3.5.3"
+    "redux": "^4.0.4",
+    "redux-devtools-extension": "^2.13.8",
+    "redux-saga": "^1.0.5",
+    "redux-state-sync": "^2.0.3",
+    "ts-optchain.macro": "^1.1.5",
+    "typescript": "3.5.3",
+    "uuid": "^3.3.2"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -25,12 +46,14 @@
     "production": [
       ">0.2%",
       "not dead",
+      "not ie <= 11",
       "not op_mini all"
     ],
     "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
+      ">0.2%",
+      "not dead",
+      "not ie <= 11",
+      "not op_mini all"
     ]
   }
 }

@@ -1,0 +1,48 @@
+.spinner {
+  width: 100px;
+  height: 100px;
+  position: fixed;
+  left: 38%;
+  top: 45%;
+  z-index: 1000000;
+}
+.spinner {
+  background: rgba(0, 0, 0, 0.3);
+  width: 100% !important;
+  height: 100% !important;
+  left: 0 !important;
+  right: 0;
+  top: 0 !important;
+  bottom: 0;
+  margin: auto;
+}
+.spinner::before {
+  content: "Please wait...";
+  padding-top: 90px;
+  border-radius: 4px;
+  box-shadow: 4px 4px 15px rgba(0, 0, 0, 0.3);
+  text-align: center;
+  vertical-align: bottom;
+  color: #e40000;
+  font-size: 14px;
+  position: absolute;
+  height: 120px;
+  margin: auto;
+  top: 0;
+  bottom: 0;
+  left: 4%;
+  right: 4%;
+  background: #fff;
+  z-index: 0;
+}
+.spinner svg {
+  left: 0;
+  width: 125px;
+  height: 125px;
+  right: 0;
+  top: 0;
+  bottom: 30px;
+  margin: auto;
+  z-index: 1;
+  position: absolute;
+}
