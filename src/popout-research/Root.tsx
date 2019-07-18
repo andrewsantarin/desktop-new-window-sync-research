@@ -8,6 +8,8 @@ import { composeWithDevTools as compose } from 'redux-devtools-extension';
 
 import { Main } from './Main';
 import { DetachableValueContainer, URL_PATH as VALUE_CONTAINER_URL_PATH } from './Value';
+import { DetachableSimpleWindowListener, URL_PATH as SIMPLE_WINDOW_LISTENER_URL_PATH } from './SimpleWindowListener';
+import { DataGrid, URL_PATH as DATA_GRID_URL_PATH } from './DataGrid';
 import { URL_PATH as DETACHABLE_URL_PATH } from './Detachable';
 
 import { rootReducer } from './Root.reducer';
@@ -45,6 +47,8 @@ export function Root() {
       <Router>
         <Route path="/" exact component={Main} />
         <Route path={`${DETACHABLE_URL_PATH}${VALUE_CONTAINER_URL_PATH}`} component={DetachableValueContainer} />
+        <Route path={`${DETACHABLE_URL_PATH}${DATA_GRID_URL_PATH}`} component={DataGrid} />
+        <Route path={`${DETACHABLE_URL_PATH}${SIMPLE_WINDOW_LISTENER_URL_PATH}`} component={DetachableSimpleWindowListener} />
       </Router>
     </Provider>
   );

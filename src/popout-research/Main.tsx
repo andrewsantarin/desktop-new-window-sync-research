@@ -9,6 +9,8 @@ import { ValueApiContainer } from './ValueApi';
 import { ValueContainer, URL_PATH as VALUE_CONTAINER_URL_PATH } from './Value';
 import { DropdownMenu } from './DropdownMenu';
 import { Button } from 'antd';
+import { SimpleWindowListener, URL_PATH as SIMPLE_WINDOW_LISTENER_URL_PATH } from './SimpleWindowListener';
+import { DataGrid, URL_PATH as DATA_GRID_URL_PATH } from './DataGrid';
 
 export const Main = () => {
   const [ popout, setPopout ] = useState(false);
@@ -29,7 +31,7 @@ export const Main = () => {
     <Fragment>
       <h2>Main</h2>
       <button onClick={togglePopout}>
-        {`${!popout ? 'Open a' : 'Close the'} popout`}
+        {`${!popout ? 'Open some' : 'Close the'} popouts`}
       </button>
 
       {/* Let's pretend that this is hooked up to a socket... */}
@@ -104,6 +106,27 @@ export const Main = () => {
             content="This menu renders on the wrong side."
             contentWrapper={Button}
           />
+        </NewWindow>
+      )}
+
+      <SimpleWindowListener />
+      <DataGrid />
+
+      {popout && (
+        <NewWindow url={`${DETACHABLE_URL_PATH}${SIMPLE_WINDOW_LISTENER_URL_PATH}`}>
+          <Attachable onAttachClick={attachPopout} />
+        </NewWindow>
+      )}
+
+      {popout && (
+        <NewWindow url={`${DETACHABLE_URL_PATH}${DATA_GRID_URL_PATH}`}>
+          <Attachable onAttachClick={attachPopout} />
+        </NewWindow>
+      )}
+
+      {popout && (
+        <NewWindow>
+          <DataGrid />
         </NewWindow>
       )}
     </Fragment>
