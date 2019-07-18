@@ -8,6 +8,7 @@ import { valueBroadcastChannel as channel, ValueMessage } from './Value.sync';
 import { Detachable } from './Detachable';
 import { ValueFetchContainer } from './ValueFetch';
 import { DropdownMenu } from './DropdownMenu';
+import { Button } from 'antd';
 
 export const URL_PATH = '/value';
 
@@ -148,7 +149,9 @@ export class Value extends Component<ValueProps, ValueState> {
               }
             ]
           }}
-          label="This menu should work."
+          icon="user"
+          content="This menu should work."
+          contentWrapper={Button}
         />
         <ValueFetchContainer />
       </div>

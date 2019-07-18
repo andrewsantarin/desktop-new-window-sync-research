@@ -46,7 +46,7 @@ export const ChildrenShorthand = forwardRef(({
   content,
   icon = {},
   iconPosition = 'left',
-  children,
+  children, // Let's not pass this to the <span> element...
   ...rest
 }: ChildrenShorthandProps & HTMLAttributes<HTMLSpanElement>, ref?: Ref<HTMLSpanElement>) => {
   const iconProps = typeof icon === 'string' ? { type: icon } : icon;

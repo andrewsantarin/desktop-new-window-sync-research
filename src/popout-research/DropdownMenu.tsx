@@ -1,30 +1,32 @@
-import React, { FunctionComponent } from 'react';
-import { Button, Dropdown, Icon } from 'antd';
+import React, { FunctionComponent, ComponentType } from 'react';
+import { Dropdown } from 'antd';
 import { DropDownProps } from 'antd/lib/dropdown/dropdown';
 import { MenuTemplate, createMenu } from './create-menu';
+import { ChildrenShorthandProps, getChildrenShorthandProps, ChildrenShorthand } from './ChildrenShorthand';
 
-export type DropdownMenuProps = Partial<Pick<DropDownProps, 'overlay'>> & {
-  label?: string;
+export type DropdownMenuProps = Partial<Pick<DropDownProps, 'overlay'>> & Omit<DropDownProps, 'overlay'> & ChildrenShorthandProps & {
+  as?: any;
   menuTemplate?: MenuTemplate;
+  contentWrapper?: ComponentType<any>;
 };
 
-export const DropdownMenu: FunctionComponent<DropdownMenuProps> = ({ label = 'Button', menuTemplate, overlay }) => {
-  let dropdownMenuOverlay: DropDownProps['overlay'];
-  if (menuTemplate) {
-    dropdownMenuOverlay = createMenu(menuTemplate);
-  } else if (overlay) {
-    dropdownMenuOverlay = overlay;
-  }
+export const DropdownMenu: FunctionComponent<DropdownMenuProps> = ({ contentWrapper: ContentWrapper, children, menuTemplate, overlay, ...rest }) => {
+  const dropdownMenuOverlay: DropDownProps['overlay'] = !!menuTemplate ? createMenu(menuTemplate) : overlay;
+  const { childrenShorthandProps, rest: otherProps } = getChildrenShorthandProps(rest);
+  const dropdownMenuChildren = !!children || typeof children === 'number' ? children : (
+    <ChildrenShorthand {...childrenShorthandProps} />
+  );
+  const triggerElement = ContentWrapper && !children && typeof children !== 'number'? (
+    <ContentWrapper>{dropdownMenuChildren}</ContentWrapper>
+  ) : dropdownMenuChildren;
+
   return (
     <Dropdown
       trigger={['click']}
       overlay={dropdownMenuOverlay}
+      {...otherProps}
     >
-      <Button>
-        {label}
-        {' '}
-        <Icon type="down" />
-      </Button>
+      {triggerElement}
     </Dropdown>
   );
 }
