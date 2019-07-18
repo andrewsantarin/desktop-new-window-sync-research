@@ -37,6 +37,7 @@ export type SubMenuTemplate = SubMenuProps & ChildrenShorthandProps & {
 };
 
 export type MenuTemplate = MenuProps & {
+  key?: Key;
   childrenTemplate?: (MenuItemTemplate | SubMenuTemplate)[];
 };
 
@@ -46,7 +47,10 @@ export const createMenu = (menuTemplate: MenuTemplate | SubMenuTemplate) => {
   // Children can be either items or more menus within menus.
   const menuChildren = childrenTemplate.map((childTemplate, index) => {
     if ('submenu' in childTemplate) {
-      return createMenu(childTemplate);
+      return createMenu({
+        ...childTemplate,
+        key: childTemplate.key || index,
+      });
     }
 
     const { childrenShorthandProps, rest } = getChildrenShorthandProps(childTemplate as MenuItemTemplate);
@@ -64,7 +68,7 @@ export const createMenu = (menuTemplate: MenuTemplate | SubMenuTemplate) => {
   // So, if the user explicitly declared that this is a "submenu", then we treat it as a <SubMenu>.
   if ('submenu' in menuTemplate) {
     const { childrenShorthandProps, rest } = getChildrenShorthandProps(menuOrSubmenuProps as SubMenuTemplate);
-    const { key, childrenTemplate, submenu: _, title: submenuTitleProp, ...submenuProps } = rest;
+    const { childrenTemplate, submenu: _, title: submenuTitleProp, ...submenuProps } = rest;
     const title = submenuTitleProp ? submenuTitleProp : (
       <ChildrenShorthand
         {...childrenShorthandProps}

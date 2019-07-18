@@ -39,7 +39,7 @@ initStateWithPrevTab(store);
 
 sagaMiddleware.run(rootSaga);
 
-export function App() {
+export function Root() {
   return (
     <Provider store={store}>
       <Router>
@@ -47,5 +47,5 @@ export function App() {
         <Route path={`${DETACHABLE_URL_PATH}${VALUE_CONTAINER_URL_PATH}`} component={DetachableValueContainer} />
       </Router>
     </Provider>
-  )
+  );
 }
