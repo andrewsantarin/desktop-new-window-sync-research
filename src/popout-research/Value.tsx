@@ -7,7 +7,7 @@ import { updateValue } from './Value.state';
 import { valueBroadcastChannel as channel, ValueMessage } from './Value.sync';
 import { Detachable } from './Detachable';
 import { ValueFetchContainer } from './ValueFetch';
-import { ThisMenuMustWork } from './ThisMenuMustWork';
+import { DropdownMenu } from './DropdownMenu';
 
 export const URL_PATH = '/value';
 
@@ -115,7 +115,41 @@ export class Value extends Component<ValueProps, ValueState> {
           <button onClick={this.handleReduxIncrementValueClick}>+</button>
           <button onClick={this.handleReduxDecrementValueClick}>-</button>
         </div>
-        <ThisMenuMustWork />
+        <DropdownMenu
+          menuTemplate={{
+            childrenTemplate: [
+              {
+                content: 'Item 1',
+                icon: 'user',
+                iconPosition: 'left',
+              },
+              {
+                content: 'Item 2',
+                icon: 'user',
+                iconPosition: 'left',
+              },
+              {
+                content: 'Item 3',
+                icon: 'user',
+                iconPosition: 'left',
+              },
+              {
+                submenu: 'submenu',
+                content: 'Submenu 4',
+                icon: 'user',
+                iconPosition: 'left',
+                childrenTemplate: [
+                  {
+                    content: 'Item 4.1',
+                    icon: 'user',
+                    iconPosition: 'left',
+                  },
+                ]
+              }
+            ]
+          }}
+          label="This menu should work."
+        />
         <ValueFetchContainer />
       </div>
     )
