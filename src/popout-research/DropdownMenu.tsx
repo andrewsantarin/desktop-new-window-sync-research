@@ -1,7 +1,7 @@
 import React, { FunctionComponent, ComponentType } from 'react';
 import { Dropdown } from 'antd';
 import { DropDownProps } from 'antd/lib/dropdown/dropdown';
-import { MenuTemplate, createMenu } from './create-menu';
+import { MenuTemplate, createMenu } from './createMenu';
 import { ChildrenShorthandProps, getChildrenShorthandProps, ChildrenShorthand } from './ChildrenShorthand';
 
 export type DropdownMenuProps = Partial<Pick<DropDownProps, 'overlay'>> & Omit<DropDownProps, 'overlay'> & ChildrenShorthandProps & {
