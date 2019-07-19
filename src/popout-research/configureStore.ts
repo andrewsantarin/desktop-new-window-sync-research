@@ -9,9 +9,16 @@ import { stateSyncConfig } from './Root.sync';
 // import { rootBlacklistStateTransfomers } from './Root.sync';
 // import { createStateSyncBlacklistMiddleware } from './redux-state-sync-blacklist';
 
-export const configureStore = () => {
+export type Mode = 'persist' | 'sync';
+
+export const configureStore = (mode: Mode = {}) => {
+  const {
+    persist,
+    sync,
+  } = mode;
+
   const stateSyncMiddleware = createStateSyncMiddleware(stateSyncConfig);
-  // const stateSyncBlacklistMiddleware = createStateSyncBlacklistMiddleware(rootBlacklistStateTransfomers);
+  const stateSyncBlacklistMiddleware = createStateSyncBlacklistMiddleware(rootBlacklistStateTransfomers);
   const sagaMiddleware = createSagaMiddleware();
   const store = createStore(
     persistedRootReducer,
@@ -20,7 +27,7 @@ export const configureStore = () => {
       applyMiddleware(
         sagaMiddleware,
         stateSyncMiddleware,
-        // stateSyncBlacklistMiddleware
+        stateSyncBlacklistMiddleware
       )
     )
   );
