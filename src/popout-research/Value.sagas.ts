@@ -13,6 +13,7 @@ function* fetchValueSaga() {
   }
 
   console.log('API found. Executing fetch...');
+  console.log(api, api.fetch);
 
   try {
     const result = yield call(api.fetch, Math.random() >= 0.5);

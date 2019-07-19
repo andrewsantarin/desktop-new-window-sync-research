@@ -1,20 +1,17 @@
 import { createStore, applyMiddleware } from 'redux';
 import createSagaMiddleware from 'redux-saga';
 import { persistStore } from 'redux-persist';
-import { createStateSyncMiddleware, initStateWithPrevTab, Config } from 'redux-state-sync';
+import { createStateSyncMiddleware, /* initStateWithPrevTab,*/ Config } from 'redux-state-sync';
 import { composeWithDevTools as compose } from 'redux-devtools-extension';
 import { rootSaga } from './Root.saga';
 import { persistedRootReducer } from './Root.reducer';
-import { rootBlacklistStateTransfomers } from './Root.sync';
-import { createStateSyncBlacklistMiddleware } from './redux-state-sync-blacklist';
-
-const config: Config = {
-  channel: 'value',
-};
+import { stateSyncConfig } from './Root.sync';
+// import { rootBlacklistStateTransfomers } from './Root.sync';
+// import { createStateSyncBlacklistMiddleware } from './redux-state-sync-blacklist';
 
 export const configureStore = () => {
-  const stateSyncMiddleware = createStateSyncMiddleware(config);
-  const stateSyncBlacklistMiddleware = createStateSyncBlacklistMiddleware(rootBlacklistStateTransfomers);
+  const stateSyncMiddleware = createStateSyncMiddleware(stateSyncConfig);
+  // const stateSyncBlacklistMiddleware = createStateSyncBlacklistMiddleware(rootBlacklistStateTransfomers);
   const sagaMiddleware = createSagaMiddleware();
   const store = createStore(
     persistedRootReducer,
@@ -23,7 +20,7 @@ export const configureStore = () => {
       applyMiddleware(
         sagaMiddleware,
         stateSyncMiddleware,
-        stateSyncBlacklistMiddleware
+        // stateSyncBlacklistMiddleware
       )
     )
   );

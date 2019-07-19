@@ -46,6 +46,7 @@ export const Main = () => {
         </NewWindow>
       )}
 
+      {/*
       {popout && (
         <NewWindow>
           <div>
@@ -129,6 +130,7 @@ export const Main = () => {
           <DataGrid />
         </NewWindow>
       )}
+      */}
     </Fragment>
   );
 }
